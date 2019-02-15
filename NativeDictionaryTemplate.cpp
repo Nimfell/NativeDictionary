@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <cstdlib>
-#include <list>
+#include <string.h>
+//#include <list>
 
 class NativeDictionary
 {
