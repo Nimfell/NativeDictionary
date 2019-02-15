@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <cstdlib>
 #include <string.h> 
 
 class NativeDictionary
@@ -197,12 +196,13 @@ int test_NativeDictionary (NativeDictionary* item)
 
 	 return test;
 }
-
+/*
 int main()
 {
 	NativeDictionary* test_item = new NativeDictionary(6);	
 	test_NativeDictionary(test_item);
 	return 0;
 }
+*/
 
 
