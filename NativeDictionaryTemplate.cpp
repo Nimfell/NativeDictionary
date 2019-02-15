@@ -1,7 +1,3 @@
-// NativeDictionary.cpp: определяет точку входа для консольного приложения.
-//
-#include "stdafx.h"
-
 #include <stdio.h>
 #include <cstdlib>
 #include <list>
@@ -92,9 +88,7 @@ class NativeDictionary
 			return;
 
 		values[index] = value;		  
-		slots[index] = key;
-	  // гарантированно записываем 
-      // значение value по ключу key
+		slots[index] = key;    
     }
 
     int get(char* key)
