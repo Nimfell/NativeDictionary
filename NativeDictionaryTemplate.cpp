@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <cstdlib>
-#include <string.h>
-//#include <list>
+#include <string.h> 
 
 class NativeDictionary
 {
@@ -9,70 +8,69 @@ class NativeDictionary
     int slots_size;
     char** slots;
     int* values; 
-	int step;
+	  int step;
 
     NativeDictionary(int sz)
     {
       step = 3;
-	  slots_size = sz;
+	    slots_size = sz;
       slots = new char*[slots_size];
       for(int i=0; i<slots_size; i++) slots[i] = NULL;
-
       values = new int[slots_size];
       for(int i=0; i<slots_size; i++) values[i] = -1;
     }
 
     int hashFun(char* key)
     {
-		if (key == NULL)
-			return -1;
-		int index = 0;	 
-		index = (int)key[0];
-		for (int i = 1; key[i] != 0; i++)  // adder of sumbols
-		{
-		  index += (int)key[i];
-		}
-		if (index < 0) index *= -1;          // number modulus
-		while (index >= slots_size)          // if larger that the size
-		{
-		  index /= 3;
-		}
-		return index;
+		  if (key == NULL)
+			  return -1;
+		  int index = 0;	 
+		  index = (int)key[0];
+		  for (int i = 1; key[i] != 0; i++)  // adder of sumbols
+		  {
+		    index += (int)key[i];
+		  }
+		  if (index < 0) index *= -1;          // number modulus
+		  while (index >= slots_size)          // if larger that the size
+		  {
+		    index /= 3;
+		  }
+		  return index;
     }
 
     bool is_key(char* key)
     {
-		int index = hashFun(key);						//get index
-		if (index == -1) 
-			return false;
+		  int index = hashFun(key);						//get index
+		  if (index == -1) 
+			  return false;
 
-		for (int i = 0; i < 3; i++)						// 3 times 
-		{
-		  while (index <= slots_size - 1)						// table limit
+		  for (int i = 0; i < 3; i++)						// 3 times 
 		  {
-			if (slots[index] != NULL)					// if slot is not empty
-			{	
-				if ( strcmp(key, slots[index]) == 0)	// compare
-				{
-					return true;						// if equal
-				}
-			}
-			index += step;								// go to next slot  
+		    while (index <= slots_size - 1)						// table limit
+		    {
+			    if (slots[index] != NULL)					// if slot is not empty
+			    {	
+				    if ( strcmp(key, slots[index]) == 0)	// compare
+				    {
+					    return true;						// if equal
+				    }
+			    }
+			    index += step;								// go to next slot  
+		    }
+		    index = index - slots_size;							// reaching limit			
 		  }
-		  index = index - slots_size;							// reaching limit			
-		}
 
-		for (int index = 0; index < slots_size; index++)		// slot by slot
-		{
-			if (slots[index] != NULL)					// if slot is not empty
-			{	
-				if ( strcmp(key, slots[index]) == 0)	// compare
-				{
-					return true;						// if equal
-				}
-			}
-		}
-		return false;
+		  for (int index = 0; index < slots_size; index++)		// slot by slot
+		  {
+			  if (slots[index] != NULL)					// if slot is not empty
+			  {	
+				  if ( strcmp(key, slots[index]) == 0)	// compare
+				  {
+					  return true;						// if equal
+				  }
+			  }
+		  }
+		  return false;
     }
 
     void put(char* key, int value)
@@ -83,22 +81,20 @@ class NativeDictionary
 			values[index] = value;
 			return;
 		}
-
 		index = seekSlot(key);
 		if (index == -1) 
 			return;
-
 		values[index] = value;		  
-		slots[index] = key;    
+		slots[index] = key;
     }
 
     int get(char* key)
     {
       int index = find(key);
-	  if (index != -1)
-	  {		  
-		  return values[index];	
-	  }	
+	    if (index != -1)
+	    {		  
+		    return values[index];	
+	    }	
       return -1;
     }
 
@@ -138,7 +134,7 @@ private:
 
     for (int i = 0; i < 3; i++)						// 3 times 
     {
-      while (index <= slots_size - 1)						// table limit
+      while (index <= slots_size - 1)				// table limit
       {
 		if (slots[index] != NULL)					// if slot is not empty
 		{	
@@ -149,10 +145,9 @@ private:
 		}
         index += step;								// go to next slot  
       }
-      index = index - slots_size;							// reaching limit			
+      index = index - slots_size;					// reaching limit			
     }
-
-    for (int index = 0; index < slots_size; index++)		// slot by slot
+    for (int index = 0; index < slots_size; index++)// slot by slot
     {
 		if (slots[index] != NULL)					// if slot is not empty
 		{	
@@ -167,7 +162,7 @@ private:
 };
 
 //==================== TEST ===================
-/*
+
 int test_NativeDictionary (NativeDictionary* item)
 {
 	 int test = 0;
@@ -209,5 +204,5 @@ int main()
 	test_NativeDictionary(test_item);
 	return 0;
 }
-*/
+
 
